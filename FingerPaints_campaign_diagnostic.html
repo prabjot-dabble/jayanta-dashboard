@@ -1,0 +1,400 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Finger Paints · All Campaigns · W21–W28 2026</title>
+<script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+--ink:#0B0F14; --panel:#121821; --panel2:#18202B; --line:#26313F;
+--txt:#E6EDF5; --mut:#8A9AAD; --dim:#5C6C80;
+--pos:#3DD68C; --neg:#FF5C6C; --warn:#FFC24B; --key:#4FA8FF; --alt:#B07CFF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:var(--txt);font-family:Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.mono{font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums}
+a{color:var(--key)}
+nav{position:sticky;top:0;z-index:50;background:rgba(11,15,20,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.navin{max-width:1400px;margin:0 auto;padding:12px 24px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.brand{font-weight:900;letter-spacing:-.02em;font-size:15px}
+.brand span{color:var(--dim);font-weight:500}
+.navlinks{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.navlinks a{font-size:12px;font-weight:600;color:var(--mut);text-decoration:none;padding:6px 10px;border-radius:6px}
+.navlinks a:hover{color:var(--txt);background:var(--panel2)}
+.wrap{max-width:1400px;margin:0 auto;padding:0 24px 100px}
+header.hero{padding:52px 0 30px;border-bottom:1px solid var(--line)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);margin-bottom:14px}
+h1{font-size:clamp(30px,5vw,52px);font-weight:900;letter-spacing:-.035em;line-height:1.02;max-width:19ch}
+h1 em{font-style:normal;color:var(--warn)}
+.sub{margin-top:16px;color:var(--mut);max-width:74ch;font-size:15px;line-height:1.6}
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+h2{font-size:24px;font-weight:800;letter-spacing:-.02em;display:flex;align-items:baseline;gap:12px}
+h2 .num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--dim);font-weight:500}
+.lead{color:var(--mut);margin-top:8px;max-width:88ch;line-height:1.62;font-size:14px}
+h3{font-size:14px;font-weight:700;margin:26px 0 12px;letter-spacing:.01em}
+.grid{display:grid;gap:14px;margin-top:22px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(178px,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.kpi .lab{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.kpi .val{font-size:27px;font-weight:800;letter-spacing:-.03em;margin-top:7px;font-variant-numeric:tabular-nums}
+.kpi .dlt{font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:5px;color:var(--mut)}
+.up{color:var(--pos)}.dn{color:var(--neg)}.wn{color:var(--warn)}
+.plot{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:8px;margin-top:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);text-align:right;padding:9px 10px;border-bottom:1px solid var(--line);cursor:pointer;white-space:nowrap;user-select:none}
+th:first-child,td:first-child{text-align:left}
+th:hover{color:var(--txt)}
+td{padding:9px 10px;border-bottom:1px solid rgba(38,49,63,.5);text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--panel2)}
+.tw{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:6px 10px;margin-top:16px}
+.pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;letter-spacing:.04em}
+.p-cr{background:rgba(255,92,108,.14);color:var(--neg)}
+.p-hi{background:rgba(255,194,75,.14);color:var(--warn)}
+.p-md{background:rgba(79,168,255,.14);color:var(--key)}
+.p-lo{background:rgba(138,154,173,.12);color:var(--mut)}
+.p-ok{background:rgba(61,214,140,.14);color:var(--pos)}
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-top:10px;overflow:hidden}
+details[open]{border-color:#33445A}
+summary{padding:14px 16px;cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;font-weight:600;font-size:14px}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+";font-family:'IBM Plex Mono',monospace;color:var(--dim);font-size:15px;width:12px}
+details[open] summary::before{content:"−";color:var(--warn)}
+.dbody{padding:0 16px 16px 40px;color:var(--mut);font-size:13.5px;line-height:1.68}
+.dbody strong{color:var(--txt)}
+.rank{font-family:'IBM Plex Mono',monospace;color:var(--dim);font-size:12px;min-width:22px}
+.bar{height:5px;background:var(--panel2);border-radius:3px;overflow:hidden;margin-top:8px}
+.bar i{display:block;height:100%;border-radius:3px}
+.na{color:var(--dim);font-style:italic}
+.note{background:rgba(255,194,75,.06);border-left:2px solid var(--warn);padding:12px 16px;border-radius:0 8px 8px 0;font-size:13px;color:var(--mut);line-height:1.6;margin-top:16px}
+.note b{color:var(--warn)}
+.ctrl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.ctrl label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--dim)}
+select,.btn{background:var(--panel2);border:1px solid var(--line);color:var(--txt);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:7px 11px;border-radius:7px;cursor:pointer}
+.btn.on{border-color:var(--key);color:var(--key)}
+.score{display:flex;align-items:center;gap:14px}
+.ring{position:relative;width:74px;height:74px;flex:0 0 74px}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;font-variant-numeric:tabular-nums}
+.sc-t{font-size:13px;font-weight:700}
+.sc-d{font-size:11.5px;color:var(--mut);margin-top:4px;line-height:1.45}
+footer{padding:34px 0;color:var(--dim);font-size:12px;line-height:1.7}
+@media(max-width:640px){.wrap{padding:0 14px 60px}.navlinks{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+:focus-visible{outline:2px solid var(--key);outline-offset:2px}
+</style></head><body>
+<nav><div class="navin">
+<div class="brand">Finger Paints <span>/ All campaigns · W21–W28 · May 17 – Jul 11 2026</span></div>
+<div class="navlinks">
+<a href="#sum">Summary</a><a href="#recon">Reconciliation</a><a href="#trend">Trend</a>
+<a href="#type">Ad types</a><a href="#camp">Campaigns</a><a href="#w28">The W28 event</a>
+<a href="#waste">Waste</a><a href="#heat">Heatmap</a><a href="#act">Actions</a>
+</div></div></nav>
+<div class="wrap">
+<header class="hero">
+<div class="eyebrow">Campaign diagnostic · 61 campaigns · 8 weeks · ₹1,54,310 spend</div>
+<h1>The spend spike was <em>three campaigns</em>, and two of them broke.</h1>
+<p class="sub">Portfolio ROAS fell from 4.64 in W24 to <em>2.74 in W28</em> — a 41% collapse. It was not gradual and not broad. In W28 alone, spend rose ₹4,478 while sales <em>fell</em> ₹2,734: marginal ROAS of <em>−0.61</em>. Three campaigns absorbed ₹5,158 of the increase. One of them, <em>SPM finger Paints KW/Broad Evits</em>, took ₹3,764 at ROAS 1.14 and a ₹21.88 CPC. Meanwhile 22 of 61 campaigns spent nothing at all for eight straight weeks.</p>
+</header>
+
+<section id="sum">
+<h2><span class="num">01</span> Portfolio summary</h2>
+<div class="grid g4" id="kpis"></div>
+<div class="note"><b>What this file adds.</b> The previous workbook gave four weeks of ASIN-level totals. This gives <b>eight weeks × 61 campaigns</b>, which closes the largest gap in the earlier analysis: campaign type splits, per-campaign efficiency, and the ability to attribute the W27–W28 deterioration to specific line items rather than to the account as a whole. It does <i>not</i> contain keywords, search terms, placements, budgets or impression share — those gaps remain.</p></div>
+</section>
+
+<section id="recon">
+<h2><span class="num">02</span> Reconciliation with the ASIN file — read this before using either number</h2>
+<p class="lead">The two uploads overlap on weeks 25–28 but do not agree. This is a material finding, not a rounding issue.</p>
+<div class="tw"><table id="rec"><thead><tr><th>Week</th><th>All-campaign spend ₹</th><th>ASIN-file spend ₹</th><th>Spend ratio</th><th>All-campaign sales ₹</th><th>ASIN-file sales ₹</th><th>Sales ratio</th></tr></thead><tbody></tbody></table></div>
+<div class="note"><b>ASIN-attributed sales exceed total campaign sales in all four weeks</b> — by 21%, 5%, 25% and 35%. A single ASIN cannot generate more ad sales than every campaign in the category combined. And spend flips direction: the ASIN file is <i>below</i> campaign spend in W25–W26, then <i>above</i> it in W27–W28.<br><br>The most likely explanation is different attribution windows or an ASIN-level report that includes halo and brand-halo sales while the campaign report shows advertised-ASIN sales only. <b>Practical consequence:</b> the ROAS 5.32→3.52 figure from the earlier dashboard and the 4.64→2.74 figure here are not the same measurement. <b>This dashboard uses the campaign file exclusively</b>, since it is internally consistent across all 61 campaigns and 8 weeks. Confirm the attribution setting with your ads team before quoting either figure externally.</div>
+</section>
+
+<section id="trend">
+<h2><span class="num">03</span> Eight-week trend</h2>
+<div class="ctrl"><label for="msel">Metric</label>
+<select id="msel"><option value="sp">Spend ₹</option><option value="sa">Sales ₹</option><option value="roas">ROAS</option>
+<option value="acos">ACOS %</option><option value="cpc">CPC ₹</option><option value="ctr">CTR %</option>
+<option value="cvr">Conversion %</option><option value="imp">Impressions</option><option value="cl">Clicks</option><option value="o">Orders</option></select></div>
+<div class="plot" id="tr"></div>
+<div class="grid g2"><div class="plot" id="dual"></div><div class="plot" id="marg"></div></div>
+<div class="tw"><table id="wt"><thead><tr><th data-k>Week</th><th data-k>Impressions</th><th data-k>Clicks</th><th data-k>CTR %</th><th data-k>Spend ₹</th><th data-k>CPC ₹</th><th data-k>Orders</th><th data-k>Sales ₹</th><th data-k>ACOS %</th><th data-k>ROAS</th><th data-k>CVR %</th></tr></thead><tbody></tbody></table></div>
+<div class="note"><b>The turn happened at W24, not W27.</b> W24 was the peak: ROAS 4.64, ACOS 21.5%, ₹85,901 sales on ₹18,507 spend. Every week since has been worse. W28 is the trough on every efficiency measure simultaneously — lowest ROAS (2.74), highest ACOS (36.5%), highest CPC (₹17.47), lowest CTR (0.578%). CPC rose 26% in the final two weeks alone while CTR fell 22%: the account is paying more for less relevant traffic.</div>
+</section>
+
+<section id="type">
+<h2><span class="num">04</span> Campaign type performance</h2>
+<p class="lead">Types inferred from the campaign naming convention (SPM/SPT/SPA/SPCT/SBV/SD prefixes). The file has no explicit type column.</p>
+<div class="grid g2"><div class="plot" id="tybar"></div><div class="plot" id="tybub"></div></div>
+<div class="tw"><table id="tyt"><thead><tr><th data-k>Type</th><th data-k>Campaigns</th><th data-k>Spend ₹</th><th data-k>Share %</th><th data-k>Sales ₹</th><th data-k>ROAS</th><th data-k>ACOS %</th><th data-k>CPC ₹</th><th data-k>CTR %</th><th data-k>CVR %</th></tr></thead><tbody></tbody></table></div>
+<div class="note"><b>Sponsored Display is the best-performing type and is starved.</b> ROAS 5.03, ACOS 19.9%, conversion 20.13% — double the account average — on just <b>₹3,141, or 2.0% of total spend</b>. Its CTR is the lowest (0.16%) because it serves on product pages, but the clicks it does buy convert extraordinarily well.<br><br>At the other end: <b>SP Category Targeting (ROAS 1.55) and SP ASIN Targeting (ROAS 1.97) together burn ₹4,997 at a blended 2.9% conversion rate</b> — roughly one-fifth the conversion of Display. SB Video sits at ROAS 2.65 with a 5.17% conversion.</div>
+</section>
+
+<section id="camp">
+<h2><span class="num">05</span> Campaign-level performance</h2>
+<p class="lead">All 61 campaigns. Sort any column. Bubble chart plots spend against ROAS — anything below the 3.59 portfolio line is diluting the account.</p>
+<div class="plot" id="scat"></div>
+<div class="tw"><table id="ct"><thead><tr><th data-k>Campaign</th><th data-k>Type</th><th data-k>Spend ₹</th><th data-k>Sales ₹</th><th data-k>ROAS</th><th data-k>ACOS %</th><th data-k>Orders</th><th data-k>CPC ₹</th><th data-k>CTR %</th><th data-k>CVR %</th><th data-k>Verdict</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<section id="w28">
+<h2><span class="num">06</span> The W28 event · where the money went</h2>
+<p class="lead">Week 27 to Week 28: spend +₹4,478, sales −₹2,734. Marginal ROAS −0.61. This table attributes the change campaign by campaign.</p>
+<div class="plot" id="wf"></div>
+<div class="tw"><table id="dt"><thead><tr><th data-k>Campaign</th><th data-k>Δ Spend ₹</th><th data-k>Δ Sales ₹</th><th data-k>Marginal ROAS</th><th data-k>Δ Impressions</th><th data-k>W28 CPC ₹</th><th data-k>W28 ROAS</th><th data-k>Assessment</th></tr></thead><tbody></tbody></table></div>
+<div class="note"><b>Three campaigns took 92% of the increase, and they split cleanly.</b><br><br>
+<b>Working:</b> <span class="mono">SPM|Braod|HighIS|FingerPaint\EV</span> (+₹2,287 → marginal ROAS 2.9) and <span class="mono">SPM|FingerPaint|NewKW-1|EV</span> (+₹2,157 → marginal ROAS 3.5). Both scaled and both returned above 2.5. These are not the problem.<br><br>
+<b>Broken:</b> <span class="mono">SPM finger Paints KW/Broad Evits</span> took ₹460 more and lost ₹6,094 of sales — <b>marginal ROAS −13.2</b>. Its W28 CPC hit ₹21.88, the highest of any campaign at scale, on ROAS 1.14. This single campaign spent ₹3,764 in W28 to return ₹4,297, and it has been deteriorating for four weeks: ROAS 4.19 in W21–24, 2.56 in W25–28.<br><br>
+<b>Also broken:</b> <span class="mono">SP_CT_Starter_fingerpaints_painting_EV</span> raised spend ₹386 to produce <b>zero sales in W28</b>, and <span class="mono">SPT|Finger Paints|Comp|EV</span> spent ₹848 for one order (ROAS 0.55).</div>
+</section>
+
+<section id="waste">
+<h2><span class="num">07</span> Waste and dormancy</h2>
+<div class="grid g3" id="wkpi"></div>
+<div class="grid g2"><div class="plot" id="wastech"></div><div class="plot" id="dorm"></div></div>
+<div class="tw"><table id="wt2"><thead><tr><th data-k>Campaign</th><th data-k>Zero-sale spend ₹</th><th data-k>Weeks with spend, no sales</th><th data-k>Total spend ₹</th><th data-k>Overall ROAS</th></tr></thead><tbody></tbody></table></div>
+<div class="note"><b>₹21,732 — 14.1% of all spend — went to campaign-weeks that returned either nothing or an ACOS above 50%.</b> Of that, ₹7,518 produced literally zero sales across 85 campaign-weeks.<br><br><b>Separately, 22 of 61 campaigns spent ₹0 across all eight weeks</b>, and 18 of those generated zero impressions. That is 36% of the account structure sitting inert — not costing money, but adding management overhead and, more importantly, suggesting the account has been built up over time without pruning. Several dormant names duplicate active ones (<span class="mono">SPM|FingerPaints|EV</span>, <span class="mono">SPM|FingerPaint|NewKW-3|EV</span>, <span class="mono">SPT|FingerPaint|BSR-2|EV</span>), which is a common source of accidental internal bid competition when they are reactivated.</div>
+</section>
+
+<section id="heat">
+<h2><span class="num">08</span> Weekly heatmaps</h2>
+<p class="lead">Top 20 campaigns by spend. First map shows where money went each week; second shows the return it earned.</p>
+<div class="plot" id="hsp"></div>
+<div class="plot" id="hro"></div>
+</section>
+
+<section id="act">
+<h2><span class="num">09</span> What to do</h2>
+<div id="acts"></div>
+</section>
+
+<section id="gaps2">
+<h2><span class="num">10</span> Still missing</h2>
+<div class="tw"><table><thead><tr><th>Requested</th><th>Status</th><th>Source needed</th></tr></thead><tbody id="gb"></tbody></table></div>
+</section>
+
+<footer>
+Built from <span class="mono">Fingerpaints_all_Campaign_Data.xlsx</span> · 1 sheet · 61 campaigns × 8 weeks (W21–W28, May 17 – Jul 11 2026) · 488 campaign-weeks with spend data.<br>
+Campaign types inferred from naming prefixes; the file contains no explicit type column. All revenue in INR.<br>
+Where this file conflicts with the earlier ASIN-level upload, the conflict is shown in Section 02 rather than resolved silently.
+</footer>
+</div>
+<script>const CD={"wk": [{"wn": 21, "sp": 17918.83, "sa": 62774.98, "o": 119, "imp": 163879, "cl": 1373, "roas": 3.5033, "acos": 28.5445, "cpc": 13.0509, "ctr": 0.8378, "cvr": 8.6672}, {"wn": 22, "sp": 16271.87, "sa": 68562.04, "o": 130, "imp": 160628, "cl": 1209, "roas": 4.2135, "acos": 23.7331, "cpc": 13.4589, "ctr": 0.7527, "cvr": 10.7527}, {"wn": 23, "sp": 21327.64, "sa": 67680.21, "o": 128, "imp": 265768, "cl": 1598, "roas": 3.1734, "acos": 31.5124, "cpc": 13.3465, "ctr": 0.6013, "cvr": 8.01}, {"wn": 24, "sp": 18507.18, "sa": 85900.88, "o": 145, "imp": 211713, "cl": 1337, "roas": 4.6415, "acos": 21.5448, "cpc": 13.8423, "ctr": 0.6315, "cvr": 10.8452}, {"wn": 25, "sp": 18375.81, "sa": 72973.84, "o": 135, "imp": 224288, "cl": 1382, "roas": 3.9712, "acos": 25.1814, "cpc": 13.2965, "ctr": 0.6162, "cvr": 9.7685}, {"wn": 26, "sp": 17818.46, "sa": 65185.38, "o": 112, "imp": 207394, "cl": 1332, "roas": 3.6583, "acos": 27.3351, "cpc": 13.3772, "ctr": 0.6423, "cvr": 8.4084}, {"wn": 27, "sp": 19806.07, "sa": 63751.88, "o": 120, "imp": 177536, "cl": 1323, "roas": 3.2188, "acos": 31.0674, "cpc": 14.9706, "ctr": 0.7452, "cvr": 9.0703}, {"wn": 28, "sp": 24284.23, "sa": 66485.79, "o": 119, "imp": 240621, "cl": 1390, "roas": 2.7378, "acos": 36.5254, "cpc": 17.4707, "ctr": 0.5777, "cvr": 8.5612}], "camp": [{"camp": "SBV Finger paints pack of 8 Evits", "type": "SB Video", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SBV|Starter Painting Fun Pack|EV", "type": "SB Video", "sp": 7861.42, "sa": 20835.55, "o": 40, "cl": 773, "imp": 163387, "roas": 2.65, "acos": 37.731, "cpc": 10.17, "ctr": 0.473, "cvr": 5.175}, {"camp": "SD_CT_FingerPaint", "type": "Sponsored Display", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SD|PT|FingerPaints|EV", "type": "Sponsored Display", "sp": 3130.77, "sa": 15794.44, "o": 31, "cl": 154, "imp": 96297, "roas": 5.045, "acos": 19.822, "cpc": 20.33, "ctr": 0.16, "cvr": 20.13}, {"camp": "SD|PT|FingerPaint|CPM|EV", "type": "Sponsored Display", "sp": 10.34, "sa": 0.0, "o": 0, "cl": 0, "imp": 436, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SD|PT||Starter Painting Fun Pack||Comp||EV", "type": "Sponsored Display", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPA | TOP ASINS | 1 | EV", "type": "SP ASIN Targeting", "sp": 1823.78, "sa": 3597.39, "o": 8, "cl": 266, "imp": 53558, "roas": 1.972, "acos": 50.697, "cpc": 6.856, "ctr": 0.497, "cvr": 3.008}, {"camp": "SPCT | Refine | Finger Paint | EV", "type": "SP Category Targeting", "sp": 122.57, "sa": 466.95, "o": 1, "cl": 16, "imp": 7307, "roas": 3.81, "acos": 26.249, "cpc": 7.661, "ctr": 0.219, "cvr": 6.25}, {"camp": "SPM finger Paints KW/Broad Evits", "type": "SP Keyword", "sp": 23843.56, "sa": 79169.62, "o": 151, "cl": 1513, "imp": 206597, "roas": 3.32, "acos": 30.117, "cpc": 15.759, "ctr": 0.732, "cvr": 9.98}, {"camp": "SPM finger Paints KW/Phrase evits", "type": "SP Keyword", "sp": 1064.44, "sa": 2098.31, "o": 3, "cl": 77, "imp": 10297, "roas": 1.971, "acos": 50.728, "cpc": 13.824, "ctr": 0.748, "cvr": 3.896}, {"camp": "SPM | BROAD | FINGER PAINT | EV", "type": "SP Keyword", "sp": 77.84, "sa": 0.0, "o": 0, "cl": 15, "imp": 2446, "roas": 0.0, "acos": null, "cpc": 5.189, "ctr": 0.613, "cvr": 0.0}, {"camp": "SPM | COMP | THOOVI | FINGERPAINT | EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 97, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM | Finger Paint Defensive KWs |--Evits", "type": "SP Keyword", "sp": 2290.44, "sa": 13318.42, "o": 23, "cl": 147, "imp": 29935, "roas": 5.815, "acos": 17.198, "cpc": 15.581, "ctr": 0.491, "cvr": 15.646}, {"camp": "SPM | Phrase | Finger Paint | Clolour KW | EV", "type": "SP Keyword", "sp": 287.82, "sa": 0.0, "o": 0, "cl": 27, "imp": 4943, "roas": 0.0, "acos": null, "cpc": 10.66, "ctr": 0.546, "cvr": 0.0}, {"camp": "SPM | Phrase | Finger Paint | EV", "type": "SP Keyword", "sp": 2652.33, "sa": 9411.22, "o": 14, "cl": 382, "imp": 190123, "roas": 3.548, "acos": 28.183, "cpc": 6.943, "ctr": 0.201, "cvr": 3.665}, {"camp": "SPM | Phrase | Finger Paint | Non Toxic KW | EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 123, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM | Phrase | Finger Paint | Painting KW | EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM | Phrase | Finger Paint | Toddler KW | EV", "type": "SP Keyword", "sp": 3682.35, "sa": 14931.12, "o": 28, "cl": 226, "imp": 25650, "roas": 4.055, "acos": 24.662, "cpc": 16.294, "ctr": 0.881, "cvr": 12.389}, {"camp": "SPM | Phrase | Finger Paint | Washable KW | EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM | Phrase | Finger Paint | Water KW | EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM | phrase | Finger paint  mix | ev", "type": "SP Keyword", "sp": 616.15, "sa": 4929.65, "o": 7, "cl": 36, "imp": 4959, "roas": 8.001, "acos": 12.499, "cpc": 17.115, "ctr": 0.726, "cvr": 19.444}, {"camp": "SPM | top asin | exact | ev", "type": "SP Keyword", "sp": 87.23, "sa": 0.0, "o": 0, "cl": 6, "imp": 919, "roas": 0.0, "acos": null, "cpc": 14.538, "ctr": 0.653, "cvr": 0.0}, {"camp": "SPM_Finger Paints Exact KW_EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|Borad|FingerPaint|EV", "type": "SP Keyword", "sp": 43.11, "sa": 463.56, "o": 1, "cl": 4, "imp": 418, "roas": 10.753, "acos": 9.3, "cpc": 10.778, "ctr": 0.957, "cvr": 25.0}, {"camp": "SPM|Braod|HighIS|FingerPaint\\EV", "type": "SP Keyword", "sp": 12447.84, "sa": 44471.94, "o": 76, "cl": 754, "imp": 157323, "roas": 3.573, "acos": 27.99, "cpc": 16.509, "ctr": 0.479, "cvr": 10.08}, {"camp": "SPM|Exact|FIngerPaint|HighCVR|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|Exact|FingerPaing|EV", "type": "SP Keyword", "sp": 606.65, "sa": 0.0, "o": 0, "cl": 49, "imp": 9160, "roas": 0.0, "acos": null, "cpc": 12.381, "ctr": 0.535, "cvr": 0.0}, {"camp": "SPM|Exact|FingerPaint|New-1|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|Exact|FingerPaint|New|EV", "type": "SP Keyword", "sp": 409.06, "sa": 1395.76, "o": 3, "cl": 31, "imp": 1377, "roas": 3.412, "acos": 29.307, "cpc": 13.195, "ctr": 2.251, "cvr": 9.677}, {"camp": "SPM|Finger Paints|TOS|EV", "type": "SP Keyword", "sp": 222.17, "sa": 1216.95, "o": 2, "cl": 14, "imp": 2847, "roas": 5.478, "acos": 18.256, "cpc": 15.869, "ctr": 0.492, "cvr": 14.286}, {"camp": "SPM|FingerPaints|AmazonPI|EV", "type": "SP Keyword", "sp": 365.71, "sa": 466.95, "o": 1, "cl": 26, "imp": 8622, "roas": 1.277, "acos": 78.319, "cpc": 14.066, "ctr": 0.302, "cvr": 3.846}, {"camp": "SPM|FingerPaints|BrandedKWPhrase|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|FingerPaints|CompKW|EV", "type": "SP Keyword", "sp": 314.69, "sa": 840.68, "o": 2, "cl": 26, "imp": 8989, "roas": 2.671, "acos": 37.433, "cpc": 12.103, "ctr": 0.289, "cvr": 7.692}, {"camp": "SPM|FingerPaints|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|FingerPaints|PT|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|FingerPaint|B0CTHWVRJY|Exact|EV", "type": "SP Keyword", "sp": 435.64, "sa": 2545.76, "o": 5, "cl": 26, "imp": 820, "roas": 5.844, "acos": 17.112, "cpc": 16.755, "ctr": 3.171, "cvr": 19.231}, {"camp": "SPM|FingerPaint|ExactNewKW-2|EV", "type": "SP Keyword", "sp": 1209.07, "sa": 9219.31, "o": 14, "cl": 61, "imp": 1058, "roas": 7.625, "acos": 13.115, "cpc": 19.821, "ctr": 5.766, "cvr": 22.951}, {"camp": "SPM|FingerPaint|NewKW-1|EV", "type": "SP Keyword", "sp": 23415.84, "sa": 86923.4, "o": 144, "cl": 1472, "imp": 192307, "roas": 3.712, "acos": 26.938, "cpc": 15.908, "ctr": 0.765, "cvr": 9.783}, {"camp": "SPM|FingerPaint|NewKW-3|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|FingerPaint|NewKW|EV", "type": "SP Keyword", "sp": 861.29, "sa": 4567.73, "o": 9, "cl": 60, "imp": 6179, "roas": 5.303, "acos": 18.856, "cpc": 14.355, "ctr": 0.971, "cvr": 15.0}, {"camp": "SPM|Fingerpainsa|Searchtermimpressionshare|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|Finger|Paints|EV", "type": "SP Keyword", "sp": 3720.89, "sa": 17885.67, "o": 29, "cl": 228, "imp": 83592, "roas": 4.807, "acos": 20.804, "cpc": 16.32, "ctr": 0.273, "cvr": 12.719}, {"camp": "SPM|NonToxic|Exact|EV", "type": "SP Keyword", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 3, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPM|finger paint|B0CTHWVRJY|EV", "type": "SP Keyword", "sp": 1815.25, "sa": 6418.65, "o": 14, "cl": 97, "imp": 6546, "roas": 3.536, "acos": 28.281, "cpc": 18.714, "ctr": 1.482, "cvr": 14.433}, {"camp": "SPT Comp. | Finger Paint | EV", "type": "SP Product Targeting", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 312, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPT | COMP | FINGER PAINT AND BRUSH | EV", "type": "SP Product Targeting", "sp": 270.44, "sa": 0.0, "o": 0, "cl": 27, "imp": 4875, "roas": 0.0, "acos": null, "cpc": 10.016, "ctr": 0.554, "cvr": 0.0}, {"camp": "SPT | COMP | FINGER PAINT | EV", "type": "SP Product Targeting", "sp": 677.55, "sa": 3027.12, "o": 5, "cl": 99, "imp": 23362, "roas": 4.468, "acos": 22.383, "cpc": 6.844, "ctr": 0.424, "cvr": 5.051}, {"camp": "SPT| Starter Painting Fun Pack|EV", "type": "SP Product Targeting", "sp": 93.45, "sa": 0.0, "o": 0, "cl": 7, "imp": 146, "roas": 0.0, "acos": null, "cpc": 13.35, "ctr": 4.795, "cvr": 0.0}, {"camp": "SPT|B0CTHWVRJY|Market Basket Analysis|EV", "type": "SP Product Targeting", "sp": 7062.57, "sa": 29731.78, "o": 58, "cl": 503, "imp": 20564, "roas": 4.21, "acos": 23.754, "cpc": 14.041, "ctr": 2.446, "cvr": 11.531}, {"camp": "SPT|Finger Paints|Comp|EV", "type": "SP Product Targeting", "sp": 13187.39, "sa": 43257.48, "o": 83, "cl": 897, "imp": 71653, "roas": 3.28, "acos": 30.486, "cpc": 14.702, "ctr": 1.252, "cvr": 9.253}, {"camp": "SPT|Finger paint|EV", "type": "SP Product Targeting", "sp": 31641.16, "sa": 116688.13, "o": 219, "cl": 2160, "imp": 146176, "roas": 3.688, "acos": 27.116, "cpc": 14.649, "ctr": 1.478, "cvr": 10.139}, {"camp": "SPT|FingerPaints|AmazonPI|EV", "type": "SP Product Targeting", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPT|FingerPaints|Comp|EV", "type": "SP Product Targeting", "sp": 1428.19, "sa": 10113.56, "o": 17, "cl": 110, "imp": 12116, "roas": 7.081, "acos": 14.122, "cpc": 12.984, "ctr": 0.908, "cvr": 15.455}, {"camp": "SPT|FingerPaint|BRS-1|EV", "type": "SP Product Targeting", "sp": 2343.52, "sa": 2742.38, "o": 6, "cl": 195, "imp": 36379, "roas": 1.17, "acos": 85.456, "cpc": 12.018, "ctr": 0.536, "cvr": 3.077}, {"camp": "SPT|FingerPaint|BSR-2|EV", "type": "SP Product Targeting", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SPT|FingerPaint|BSR-3|EV", "type": "SP Product Targeting", "sp": 426.19, "sa": 928.82, "o": 2, "cl": 42, "imp": 12135, "roas": 2.179, "acos": 45.885, "cpc": 10.147, "ctr": 0.346, "cvr": 4.762}, {"camp": "SPT|FingerPaint|New|EV", "type": "SP Product Targeting", "sp": 383.53, "sa": 931.36, "o": 2, "cl": 33, "imp": 6344, "roas": 2.428, "acos": 41.18, "cpc": 11.622, "ctr": 0.52, "cvr": 6.061}, {"camp": "SPT|Fingerpainsa|Searchtermimpressionshare|EV", "type": "SP Product Targeting", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}, {"camp": "SP_CT_Starter_fingerpaints_painting_EV", "type": "SP Category Targeting", "sp": 3050.25, "sa": 4458.39, "o": 9, "cl": 358, "imp": 39432, "roas": 1.462, "acos": 68.416, "cpc": 8.52, "ctr": 0.908, "cvr": 2.514}, {"camp": "SP_PT_Finger Paint_Alternate Purchase", "type": "SP Product Targeting", "sp": 327.6, "sa": 466.95, "o": 1, "cl": 27, "imp": 2018, "roas": 1.425, "acos": 70.157, "cpc": 12.133, "ctr": 1.338, "cvr": 3.704}, {"camp": "SP_PT_Shumee Finger Painting Kit", "type": "SP Product Targeting", "sp": 0.0, "sa": 0.0, "o": 0, "cl": 0, "imp": 0, "roas": 0.0, "acos": null, "cpc": 0.0, "ctr": 0.0, "cvr": 0.0}], "typ": [{"type": "SB Video", "sp": 7861.42, "sa": 20835.55, "o": 40, "cl": 773, "imp": 163387, "n": 2, "roas": 2.65, "acos": 37.731, "cpc": 10.17, "ctr": 0.473, "cvr": 5.175}, {"type": "SP ASIN Targeting", "sp": 1823.78, "sa": 3597.39, "o": 8, "cl": 266, "imp": 53558, "n": 1, "roas": 1.972, "acos": 50.697, "cpc": 6.856, "ctr": 0.497, "cvr": 3.008}, {"type": "SP Category Targeting", "sp": 3172.82, "sa": 4925.34, "o": 10, "cl": 374, "imp": 46739, "n": 2, "roas": 1.552, "acos": 64.418, "cpc": 8.483, "ctr": 0.8, "cvr": 2.674}, {"type": "SP Keyword", "sp": 80469.37, "sa": 300274.7, "o": 526, "cl": 5277, "imp": 955330, "n": 36, "roas": 3.732, "acos": 26.799, "cpc": 15.249, "ctr": 0.552, "cvr": 9.968}, {"type": "SP Product Targeting", "sp": 57841.59, "sa": 207887.58, "o": 393, "cl": 4100, "imp": 336080, "n": 16, "roas": 3.594, "acos": 27.823, "cpc": 14.108, "ctr": 1.22, "cvr": 9.585}, {"type": "Sponsored Display", "sp": 3141.11, "sa": 15794.44, "o": 31, "cl": 154, "imp": 96733, "n": 4, "roas": 5.028, "acos": 19.887, "cpc": 20.397, "ctr": 0.159, "cvr": 20.13}], "hm_camp": ["SPT|Finger paint|EV", "SPM finger Paints KW/Broad Evits", "SPM|FingerPaint|NewKW-1|EV", "SPT|Finger Paints|Comp|EV", "SPM|Braod|HighIS|FingerPaint\\EV", "SBV|Starter Painting Fun Pack|EV", "SPT|B0CTHWVRJY|Market Basket Analysis|EV", "SPM|Finger|Paints|EV", "SPM | Phrase | Finger Paint | Toddler KW | EV", "SD|PT|FingerPaints|EV", "SP_CT_Starter_fingerpaints_painting_EV", "SPM | Phrase | Finger Paint | EV", "SPT|FingerPaint|BRS-1|EV", "SPM | Finger Paint Defensive KWs |--Evits", "SPA | TOP ASINS | 1 | EV", "SPM|finger paint|B0CTHWVRJY|EV", "SPT|FingerPaints|Comp|EV", "SPM|FingerPaint|ExactNewKW-2|EV", "SPM finger Paints KW/Phrase evits", "SPM|FingerPaint|NewKW|EV"], "hm_sp": [[3176.46, 2858.48, 3117.54, 3261.31, 3504.76, 5431.73, 6650.69, 3640.19], [2364.77, 2474.73, 3065.88, 3203.77, 3153.16, 2514.14, 3303.32, 3763.79], [1769.84, 3092.98, 2626.9, 3407.59, 2979.15, 2928.4, 2226.99, 4383.99], [3099.4, 2301.67, 1815.31, 1433.96, 1527.8, 949.97, 1210.98, 848.3], [833.51, 912.81, 1320.82, 1183.66, 1906.53, 1216.78, 1393.62, 3680.11], [1978.36, 587.62, 3147.77, 346.25, 336.15, 467.44, 433.38, 564.45], [1144.22, 718.39, 1290.31, 1474.2, 592.9, 519.62, 397.59, 925.34], [278.8, 223.79, 370.27, 627.53, 669.02, 538.82, 793.5, 219.16], [392.44, 293.71, 326.19, 331.86, 622.94, 556.97, 596.83, 561.41], [322.32, 306.57, 326.13, 421.45, 524.31, 385.38, 371.0, 473.61], [247.85, 384.77, 620.88, 296.86, 262.36, 233.3, 309.0, 695.23], [0.0, 0.0, 219.14, 867.85, 780.55, 784.79, 0.0, 0.0], [227.65, 145.3, 213.33, 219.7, 195.31, 199.9, 213.78, 928.55], [28.9, 12.7, 61.44, 219.92, 235.52, 268.35, 437.28, 1026.33], [0.0, 404.45, 1419.33, 0.0, 0.0, 0.0, 0.0, 0.0], [93.2, 296.83, 190.85, 199.35, 178.54, 136.27, 235.61, 484.6], [244.51, 272.47, 495.2, 284.26, 62.62, 13.07, 43.74, 12.32], [67.35, 58.52, 120.74, 109.63, 101.68, 37.95, 230.85, 482.35], [199.8, 172.06, 169.32, 149.73, 135.41, 162.73, 58.84, 16.55], [17.39, 79.46, 36.02, 109.94, 113.49, 68.59, 77.68, 358.72]], "hm_sa": [[14259.7, 14659.9, 15344.1, 10347.09, 15355.02, 17291.0, 19494.59, 9936.73], [10000.44, 9962.66, 11139.85, 15478.85, 9819.61, 8081.43, 10390.16, 4296.62], [6790.39, 11950.52, 6025.11, 18370.3, 12370.74, 11669.19, 6124.12, 13623.03], [9807.35, 7657.95, 6354.2, 7862.68, 4717.75, 3561.03, 2832.96, 463.56], [3851.76, 5602.54, 3141.54, 7451.7, 6406.8, 4810.82, 3277.97, 9928.81], [2716.93, 1400.84, 2763.29, 2968.14, 1704.24, 4459.74, 1900.34, 2922.03], [2978.82, 3735.59, 5705.1, 6271.2, 2098.28, 1393.22, 2897.02, 4652.55], [421.19, 3092.4, 2469.43, 1955.05, 4658.07, 4825.12, 464.41, 0.0], [3632.21, 538.1, 1857.61, 1745.75, 2210.18, 1540.61, 1870.46, 1536.2], [918.74, 3088.09, 1857.63, 2788.14, 2881.1, 0.0, 1349.16, 2911.58], [1052.54, 0.0, 906.31, 441.9, 464.41, 0.0, 1593.23, 0.0], [0.0, 0.0, 0.0, 2548.88, 5122.69, 1739.65, 0.0, 0.0], [0.0, 466.95, 0.0, 464.41, 0.0, 0.0, 0.0, 1811.02], [0.0, 708.47, 559.05, 464.41, 2769.23, 1857.63, 1745.75, 5213.88], [0.0, 559.05, 3038.34, 0.0, 0.0, 0.0, 0.0, 0.0], [0.0, 933.89, 464.4, 928.82, 464.4, 0.0, 2322.05, 1305.09], [3238.98, 1525.42, 2674.58, 2210.18, 464.4, 0.0, 0.0, 0.0], [0.0, 816.95, 1281.36, 1393.22, 464.41, 464.4, 2512.53, 2286.44], [0.0, 0.0, 816.95, 0.0, 0.0, 816.95, 464.41, 0.0], [0.0, 0.0, 0.0, 816.94, 1002.51, 1745.77, 464.41, 538.1]], "wkly": {"21": {"SB Video": 1978.36, "SP ASIN Targeting": 0.0, "SP Category Targeting": 274.34, "SP Keyword": 6941.7300000000005, "SP Product Targeting": 8402.08, "Sponsored Display": 322.32}, "22": {"SB Video": 587.62, "SP ASIN Targeting": 404.45, "SP Category Targeting": 422.76, "SP Keyword": 8034.12, "SP Product Targeting": 6516.35, "Sponsored Display": 306.57}, "23": {"SB Video": 3147.77, "SP ASIN Targeting": 1419.33, "SP Category Targeting": 658.6, "SP Keyword": 8640.960000000001, "SP Product Targeting": 7134.849999999999, "Sponsored Display": 326.13}, "24": {"SB Video": 346.25, "SP ASIN Targeting": 0.0, "SP Category Targeting": 302.7, "SP Keyword": 10579.54, "SP Product Targeting": 6857.24, "Sponsored Display": 421.45}, "25": {"SB Video": 336.15, "SP ASIN Targeting": 0.0, "SP Category Targeting": 262.36, "SP Keyword": 11065.11, "SP Product Targeting": 6187.88, "Sponsored Display": 524.31}, "26": {"SB Video": 467.44, "SP ASIN Targeting": 0.0, "SP Category Targeting": 237.87, "SP Keyword": 9399.61, "SP Product Targeting": 7328.16, "Sponsored Display": 385.38}, "27": {"SB Video": 433.38, "SP ASIN Targeting": 0.0, "SP Category Targeting": 309.0, "SP Keyword": 9863.68, "SP Product Targeting": 8829.01, "Sponsored Display": 371.0}, "28": {"SB Video": 564.45, "SP ASIN Targeting": 0.0, "SP Category Targeting": 705.19, "SP Keyword": 15944.619999999999, "SP Product Targeting": 6586.02, "Sponsored Display": 483.95}}};</script><script>const WK=CD.wk,CAMP=CD.camp,TYP=CD.typ;
+const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const P={paper_bgcolor:'rgba(0,0,0,0)',plot_bgcolor:'rgba(0,0,0,0)',
+ font:{family:'IBM Plex Mono, monospace',color:'#8A9AAD',size:11},
+ margin:{l:60,r:24,t:46,b:44},
+ xaxis:{gridcolor:'#1B2430',zerolinecolor:'#26313F',linecolor:'#26313F'},
+ yaxis:{gridcolor:'#1B2430',zerolinecolor:'#26313F',linecolor:'#26313F'},
+ title:{font:{family:'Archivo',size:13,color:'#E6EDF5'},x:0.01,xanchor:'left'},
+ legend:{orientation:'h',y:-0.2,font:{size:10}},hovermode:'x unified'};
+const pl=(id,d,l)=>Plotly.newPlot(id,d,Object.assign({},P,l),{displayModeBar:false,responsive:true});
+const WL=WK.map(r=>'W'+r.wn);
+const T={sp:WK.reduce((a,b)=>a+b.sp,0),sa:WK.reduce((a,b)=>a+b.sa,0),o:WK.reduce((a,b)=>a+b.o,0),
+ cl:WK.reduce((a,b)=>a+b.cl,0),imp:WK.reduce((a,b)=>a+b.imp,0)};
+const w28=WK[7],w27=WK[6],w24=WK[3],w21=WK[0];
+
+/* KPIs */
+document.getElementById('kpis').innerHTML=[
+ ['Total spend · 8 weeks',inr(T.sp),'61 campaigns, 39 active',''],
+ ['Total ad sales',inr(T.sa),T.o+' orders',''],
+ ['Portfolio ROAS',(T.sa/T.sp).toFixed(2)+'x','Blended ACOS '+(T.sp/T.sa*100).toFixed(1)+'%',''],
+ ['W28 ROAS',w28.roas.toFixed(2)+'x','Peak was 4.64x in W24 · −41%','dn'],
+ ['W28 ACOS',w28.acos.toFixed(1)+'%','W24 was 21.5% · +15 pts','dn'],
+ ['W28 CPC',inr(w28.cpc),'W21 was ₹13.05 · +33.9%','dn'],
+ ['W28 CTR',w28.ctr.toFixed(3)+'%','W21 was 0.838% · −31.0%','dn'],
+ ['W27→W28 marginal ROAS','−0.61x','+'+inr(w28.sp-w27.sp)+' spend, '+inr(w28.sa-w27.sa)+' sales','dn'],
+ ['Spend at ACOS>50% or zero sales',inr(21732),'14.1% of all spend','dn'],
+ ['Pure zero-sale spend',inr(7518),'85 campaign-weeks, 28 campaigns','dn'],
+ ['Dormant campaigns','22 of 61','₹0 spend for 8 straight weeks','wn'],
+ ['Best type · Sponsored Display','5.03x ROAS','Only 2.0% of budget','up']]
+ .map(([l,v,d,c])=>`<div class="card kpi"><div class="lab">${l}</div><div class="val" style="font-size:22px">${v}</div><div class="dlt ${c}">${d}</div></div>`).join('');
+
+/* reconciliation */
+const REC=[[25,18375.81,16599.72,72973.84,88328.10],[26,17818.46,15412.75,65185.38,68464.42],
+ [27,19806.07,22001.39,63751.88,79836.13],[28,24284.23,25470.37,66485.79,89714.64]];
+document.querySelector('#rec tbody').innerHTML=REC.map(r=>`<tr><td>W${r[0]}</td>
+<td>${inr(r[1])}</td><td>${inr(r[2])}</td><td class="${r[2]/r[1]>1?'dn':'wn'}">${(r[2]/r[1]*100).toFixed(1)}%</td>
+<td>${inr(r[3])}</td><td>${inr(r[4])}</td><td class="dn">${(r[4]/r[3]*100).toFixed(1)}%</td></tr>`).join('');
+
+/* trend */
+const LB={sp:'Spend ₹',sa:'Sales ₹',roas:'ROAS',acos:'ACOS %',cpc:'CPC ₹',ctr:'CTR %',cvr:'Conversion %',imp:'Impressions',cl:'Clicks',o:'Orders'};
+function tr(){const k=msel.value,y=WK.map(r=>r[k]);
+ const bad=['acos','cpc'].includes(k);
+ pl('tr',[{x:WL,y,type:'scatter',mode:'lines+markers',name:LB[k],
+  line:{color:bad?'#FF5C6C':'#4FA8FF',width:2.6,shape:'spline'},marker:{size:9},
+  fill:'tozeroy',fillcolor:bad?'rgba(255,92,108,.08)':'rgba(79,168,255,.09)'},
+  {x:WL,y:y.map((_,i)=>i<2?null:(y[i]+y[i-1]+y[i-2])/3),type:'scatter',mode:'lines',name:'3-week moving average',line:{color:'#FFC24B',width:1.6,dash:'dot'}}],
+  {title:{text:'Weekly · '+LB[k]},height:380});}
+msel.onchange=tr;tr();
+
+pl('dual',[{x:WL,y:WK.map(r=>r.sp),name:'Spend ₹',type:'bar',marker:{color:'#FF5C6C'}},
+ {x:WL,y:WK.map(r=>r.sa),name:'Sales ₹',type:'bar',marker:{color:'#1F3A5F'}},
+ {x:WL,y:WK.map(r=>r.roas),name:'ROAS',type:'scatter',mode:'lines+markers',line:{color:'#3DD68C',width:2.6},marker:{size:9},yaxis:'y2'}],
+ {title:{text:'Spend rises, sales flatten, ROAS falls from W24'},height:350,barmode:'group',
+  yaxis2:{overlaying:'y',side:'right',showgrid:false,title:{text:'ROAS',font:{size:10}}}});
+
+const mr=WK.slice(1).map((r,i)=>{const ds=r.sp-WK[i].sp,dv=r.sa-WK[i].sa;return ds!==0?dv/ds:0;});
+pl('marg',[{x:WL.slice(1),y:mr,type:'bar',marker:{color:mr.map(v=>v<0?'#FF5C6C':v<2?'#FFC24B':'#3DD68C')},
+ text:mr.map(v=>v.toFixed(2)+'x'),textposition:'outside',textfont:{size:10}}],
+ {title:{text:'Marginal ROAS week over week · return on each week\'s spend change'},height:350,hovermode:'closest'});
+
+document.querySelector('#wt tbody').innerHTML=WK.map(r=>`<tr><td>W${r.wn}</td>
+<td>${r.imp.toLocaleString('en-IN')}</td><td>${r.cl.toLocaleString('en-IN')}</td><td>${r.ctr.toFixed(3)}</td>
+<td>${inr(r.sp)}</td><td>${r.cpc.toFixed(2)}</td><td>${r.o}</td><td>${inr(r.sa)}</td>
+<td class="${r.acos>30?'dn':'up'}">${r.acos.toFixed(1)}</td>
+<td class="${r.roas<3.5?'dn':'up'}">${r.roas.toFixed(2)}</td><td>${r.cvr.toFixed(2)}</td></tr>`).join('');
+
+/* types */
+const TS=TYP.slice().sort((a,b)=>b.sp-a.sp);
+pl('tybar',[{x:TS.map(t=>t.type),y:TS.map(t=>t.sp),name:'Spend ₹',type:'bar',marker:{color:'#33445A'}},
+ {x:TS.map(t=>t.type),y:TS.map(t=>t.roas),name:'ROAS',type:'scatter',mode:'markers',
+  marker:{size:16,color:TS.map(t=>t.roas>=3.59?'#3DD68C':'#FF5C6C'),line:{color:'#0B0F14',width:2}},yaxis:'y2'}],
+ {title:{text:'Spend vs ROAS by type · green beats the 3.59 portfolio average'},height:360,
+  yaxis2:{overlaying:'y',side:'right',showgrid:false},hovermode:'closest',xaxis:{tickangle:-18,gridcolor:'#1B2430'}});
+pl('tybub',[{x:TS.map(t=>t.cvr),y:TS.map(t=>t.roas),text:TS.map(t=>t.type),mode:'markers+text',type:'scatter',
+ textposition:'top center',textfont:{size:9.5,color:'#8A9AAD'},
+ marker:{size:TS.map(t=>Math.max(12,Math.sqrt(t.sp)/3.5)),color:TS.map(t=>t.roas>=3.59?'#3DD68C':'#FF5C6C'),opacity:.75,line:{color:'#0B0F14',width:1.5}},
+ hovertemplate:'%{text}<br>CVR %{x:.2f}%<br>ROAS %{y:.2f}x<extra></extra>'}],
+ {title:{text:'Conversion vs ROAS · bubble size = spend'},height:360,hovermode:'closest',
+  xaxis:{title:{text:'Conversion rate %',font:{size:10}},gridcolor:'#1B2430'},yaxis:{title:{text:'ROAS',font:{size:10}},gridcolor:'#1B2430'}});
+document.querySelector('#tyt tbody').innerHTML=TS.map(t=>`<tr><td style="font-weight:600">${t.type}</td>
+<td>${t.n}</td><td>${inr(t.sp)}</td><td>${(t.sp/T.sp*100).toFixed(1)}</td><td>${inr(t.sa)}</td>
+<td class="${t.roas>=3.59?'up':'dn'}">${t.roas.toFixed(2)}</td><td class="${t.acos>30?'dn':'up'}">${t.acos.toFixed(1)}</td>
+<td>${t.cpc.toFixed(2)}</td><td>${t.ctr.toFixed(2)}</td><td>${t.cvr.toFixed(2)}</td></tr>`).join('');
+
+/* campaigns */
+const AC=CAMP.filter(c=>c.sp>0).sort((a,b)=>b.sp-a.sp);
+pl('scat',[{x:AC.map(c=>c.sp),y:AC.map(c=>c.roas),text:AC.map(c=>c.camp),mode:'markers',type:'scatter',
+ marker:{size:AC.map(c=>Math.max(7,Math.sqrt(c.sa)/9)),color:AC.map(c=>c.roas>=3.59?'#3DD68C':c.roas>=2?'#FFC24B':'#FF5C6C'),
+  opacity:.8,line:{color:'#0B0F14',width:1}},
+ hovertemplate:'%{text}<br>Spend ₹%{x:,.0f}<br>ROAS %{y:.2f}x<extra></extra>'}],
+ {title:{text:'Spend vs ROAS · every active campaign · bubble size = sales'},height:430,hovermode:'closest',
+  xaxis:{title:{text:'Spend ₹ (log)',font:{size:10}},type:'log',gridcolor:'#1B2430'},
+  yaxis:{title:{text:'ROAS',font:{size:10}},gridcolor:'#1B2430'},
+  shapes:[{type:'line',x0:100,x1:35000,y0:3.59,y1:3.59,line:{color:'#4FA8FF',width:1.4,dash:'dash'}}],
+  annotations:[{x:Math.log10(20000),y:3.59,text:'Portfolio 3.59x',showarrow:false,yshift:11,font:{size:9.5,color:'#4FA8FF'}}]});
+const dorm=CAMP.filter(c=>c.sp===0);
+document.querySelector('#ct tbody').innerHTML=AC.map(c=>{
+ const v=c.roas>=5?['p-ok','Scale']:c.roas>=3.59?['p-md','Hold']:c.roas>=2?['p-hi','Fix']:['p-cr','Cut'];
+ return `<tr><td style="font-size:11.5px" class="mono">${c.camp}</td><td style="text-align:right;font-size:11px;color:var(--mut)">${c.type}</td>
+ <td>${inr(c.sp)}</td><td>${inr(c.sa)}</td><td class="${c.roas>=3.59?'up':'dn'}">${c.roas.toFixed(2)}</td>
+ <td>${c.acos==null?'∞':c.acos.toFixed(1)}</td><td>${c.o}</td><td>${c.cpc.toFixed(2)}</td>
+ <td>${c.ctr.toFixed(2)}</td><td>${c.cvr.toFixed(1)}</td><td><span class="pill ${v[0]}">${v[1]}</span></td></tr>`}).join('')
+ +dorm.map(c=>`<tr style="opacity:.5"><td class="mono" style="font-size:11.5px">${c.camp}</td>
+ <td style="text-align:right;font-size:11px;color:var(--mut)">${c.type}</td><td>₹0</td><td>₹0</td><td>—</td><td>—</td><td>0</td><td>—</td><td>—</td><td>—</td>
+ <td><span class="pill p-lo">Dormant</span></td></tr>`).join('');
+
+/* W28 deltas */
+const D=[['SPM|Braod|HighIS|FingerPaint\\EV',2286.5,6650.8,2.91,10031,23.29,2.70,'Scaled and returned — keep'],
+ ['SPM|FingerPaint|NewKW-1|EV',2157.0,7498.9,3.48,26739,18.42,3.11,'Scaled and returned — keep'],
+ ['SPT|FingerPaint|BRS-1|EV',714.8,1811.0,2.53,14113,16.29,1.95,'Marginal gain but 1.17x lifetime ROAS'],
+ ['SPM | Finger Paint Defensive KWs |--Evits',589.0,3468.1,5.89,8858,18.66,5.08,'Best marginal return — scale further'],
+ ['SPT|B0CTHWVRJY|Market Basket Analysis|EV',527.8,1755.5,3.33,814,14.92,5.03,'Strong — underfunded at ₹925/wk'],
+ ['SPM finger Paints KW/Broad Evits',460.5,-6093.5,-13.23,4983,21.88,1.14,'CRITICAL — highest CPC, collapsing'],
+ ['SP_CT_Starter_fingerpaints_painting_EV',386.2,-1593.2,-4.12,-1039,9.93,0.00,'CRITICAL — zero sales in W28'],
+ ['SPM|FingerPaint|NewKW|EV',281.0,73.7,0.26,1505,16.30,1.50,'Spend up, no return'],
+ ['SPM | phrase | Finger paint  mix | ev',272.8,21.2,0.08,2823,20.81,7.00,'Spend up, flat sales'],
+ ['SPM|FingerPaint|ExactNewKW-2|EV',251.5,-226.1,-0.90,355,20.10,4.74,'Still profitable but diluting'],
+ ['SPM|finger paint|B0CTHWVRJY|EV',249.0,-1017.0,-4.08,-85,22.03,2.69,'Spend up, sales down'],
+ ['SBV|Starter Painting Fun Pack|EV',131.1,1021.7,7.79,1743,6.88,5.18,'Excellent marginal — scale']];
+pl('wf',[{type:'waterfall',orientation:'v',
+ x:['W27 sales',...D.slice(0,7).map(d=>d[0].split(/[|\\]/)[1]||d[0].slice(0,14)),'All others','W28 sales'],
+ measure:['absolute',...D.slice(0,7).map(()=>'relative'),'relative','total'],
+ y:[w27.sa,...D.slice(0,7).map(d=>d[2]),(w28.sa-w27.sa)-D.slice(0,7).reduce((a,b)=>a+b[2],0),0],
+ text:[inr(w27.sa),...D.slice(0,7).map(d=>(d[2]>=0?'+':'')+inr(d[2])),'','' ],
+ textposition:'outside',textfont:{size:9},connector:{line:{color:'#26313F'}},
+ increasing:{marker:{color:'#3DD68C'}},decreasing:{marker:{color:'#FF5C6C'}},totals:{marker:{color:'#4FA8FF'}}}],
+ {title:{text:'W27 → W28 sales bridge by campaign'},height:400,hovermode:'closest',xaxis:{tickangle:-28,gridcolor:'#1B2430'}});
+document.querySelector('#dt tbody').innerHTML=D.map(d=>`<tr>
+<td class="mono" style="font-size:11.5px">${d[0]}</td><td class="${d[1]>=0?'':'up'}">+${inr(d[1])}</td>
+<td class="${d[2]>=0?'up':'dn'}">${d[2]>=0?'+':''}${inr(d[2])}</td>
+<td class="${d[3]>=2.5?'up':'dn'}">${d[3].toFixed(2)}</td><td>${d[4].toLocaleString('en-IN')}</td>
+<td class="${d[5]>18?'dn':''}">${d[5].toFixed(2)}</td><td class="${d[6]>=3.59?'up':'dn'}">${d[6].toFixed(2)}</td>
+<td style="text-align:right;font-size:11.5px;color:${d[7].includes('CRITICAL')?'#FF5C6C':'var(--mut)'}">${d[7]}</td></tr>`).join('');
+
+/* waste */
+document.getElementById('wkpi').innerHTML=[
+ ['Zero-sale spend',inr(7518),'85 campaign-weeks across 28 campaigns','dn'],
+ ['Spend at ACOS>50% or zero',inr(21732),'14.1% of ₹1,54,310 total','dn'],
+ ['Dormant campaigns','22 / 61','18 with zero impressions too','wn'],
+ ['Recoverable at ROAS 3.59',inr(21732*3.59),'If reallocated at portfolio average','up'],
+ ['Worst active campaign','1.17x','SPT|FingerPaint|BRS-1|EV · ₹2,344 spend','dn'],
+ ['Best small campaign','7.63x','SPM|FingerPaint|ExactNewKW-2|EV · ₹1,209','up']]
+ .map(([l,v,d,c])=>`<div class="card kpi"><div class="lab">${l}</div><div class="val" style="font-size:23px">${v}</div><div class="dlt ${c}">${d}</div></div>`).join('');
+const WA=[['SP_CT_Starter_fingerpaints_painting_EV',1313,5,3050.25,1.46],['SPT|FingerPaint|BRS-1|EV',1050,4,2343.52,1.17],
+ ['SPM finger Paints KW/Phrase evits',674,4,1064.44,1.97],['SPM|Exact|FingerPaing|EV',607,6,606.65,0.00],
+ ['SD|PT|FingerPaints|EV',385,2,3130.77,5.04],['SPT|FingerPaint|BSR-3|EV',309,3,426.19,2.18],
+ ['SPM | Phrase | Finger Paint | Clolour KW | EV',288,4,287.82,0.00],['SPT | COMP | FINGER PAINT AND BRUSH | EV',270,3,270.44,0.00],
+ ['SPT | COMP | FINGER PAINT | EV',238,3,677.55,4.47],['SPT|FingerPaint|New|EV',237,3,383.53,2.43],
+ ['SPM|finger paint|B0CTHWVRJY|EV',229,2,1815.25,3.54],['SPM|FingerPaints|AmazonPI|EV',222,3,365.71,1.28],
+ ['SPM|Finger|Paints|EV',219,2,3720.89,4.81],['SPM | Phrase | Finger Paint | EV',219,3,2652.33,3.55],
+ ['SPM | phrase | Finger paint  mix | ev',182,2,616.15,8.00]];
+pl('wastech',[{y:WA.map(w=>w[0].slice(0,34)).reverse(),x:WA.map(w=>w[1]).reverse(),type:'bar',orientation:'h',
+ marker:{color:WA.map(w=>w[4]<2?'#FF5C6C':'#FFC24B').reverse()},text:WA.map(w=>'₹'+w[1]).reverse(),textposition:'outside',textfont:{size:9}}],
+ {title:{text:'Zero-sale spend by campaign'},height:400,margin:{l:215,r:56,t:46,b:36},hovermode:'closest'});
+pl('dorm',[{values:[39,22],labels:['Active (spent money)','Dormant (₹0 for 8 weeks)'],type:'pie',hole:.62,
+ marker:{colors:['#1F3A5F','#FF5C6C']},textinfo:'label+value',textfont:{size:10.5},
+ hovertemplate:'%{label}<br>%{value} campaigns<extra></extra>'}],
+ {title:{text:'Account structure · 36% of campaigns are inert'},height:400,showlegend:false});
+document.querySelector('#wt2 tbody').innerHTML=WA.map(w=>`<tr><td class="mono" style="font-size:11.5px">${w[0]}</td>
+<td class="dn">${inr(w[1])}</td><td>${w[2]}</td><td>${inr(w[3])}</td>
+<td class="${w[4]>=3.59?'up':'dn'}">${w[4].toFixed(2)}</td></tr>`).join('');
+
+/* heatmaps */
+const HC=CD.hm_camp.map(c=>c.length>34?c.slice(0,32)+'…':c);
+pl('hsp',[{z:CD.hm_sp,x:WL,y:HC,type:'heatmap',colorscale:[[0,'#0F1620'],[0.4,'#1F3A5F'],[1,'#4FA8FF']],
+ hovertemplate:'%{y}<br>%{x}<br>Spend ₹%{z:,.0f}<extra></extra>',colorbar:{thickness:9,len:.75,tickfont:{size:9}}}],
+ {title:{text:'Weekly spend by campaign ₹'},height:520,margin:{l:245,r:60,t:46,b:36},hovermode:'closest'});
+const ro=CD.hm_sp.map((r,i)=>r.map((v,j)=>v>0?CD.hm_sa[i][j]/v:null));
+pl('hro',[{z:ro,x:WL,y:HC,type:'heatmap',colorscale:[[0,'#FF5C6C'],[0.28,'#3A2530'],[0.36,'#18202B'],[0.5,'#1F4A38'],[1,'#3DD68C']],
+ zmin:0,zmax:10,hovertemplate:'%{y}<br>%{x}<br>ROAS %{z:.2f}x<extra></extra>',colorbar:{thickness:9,len:.75,tickfont:{size:9}}}],
+ {title:{text:'Weekly ROAS by campaign · red below ~3.6, green above'},height:520,margin:{l:245,r:60,t:46,b:36},hovermode:'closest'});
+
+/* actions */
+const A=[['Immediate · this week',[
+ ['Pause SPM finger Paints KW/Broad Evits','Critical','₹23,844 lifetime spend at 3.32x, but W28 ROAS is 1.14 with a ₹21.88 CPC — the highest of any campaign at scale. Marginal ROAS on its last increase was −13.2. It has fallen from 4.19x (W21–24) to 2.56x (W25–28). Pause, or cut its bid 40% and rebuild as exact-match.','Recovers ~₹3,300/week of spend'],
+ ['Pause SP_CT_Starter_fingerpaints_painting_EV','Critical','Lifetime ROAS 1.46 on ₹3,050. Spent ₹695 in W28 for <strong>zero sales</strong>, and ₹1,313 of its total produced nothing. Category targeting is the weakest type in the account at 1.55x.','Recovers ₹3,050 of dead spend'],
+ ['Pause SPT|FingerPaint|BRS-1|EV','High','ROAS 1.17 on ₹2,344 — the worst active campaign of any size. ₹1,050 produced zero sales across 4 weeks. It grew impressions 14,113 in W28 at 3.08% conversion.','Recovers ₹2,344'],
+ ['Cut SPA | TOP ASINS | 1 | EV and SPM|Exact|FingerPaing|EV','High','ROAS 1.97 and 0.00 respectively. The latter has spent ₹607 across 6 weeks for zero sales.','Recovers ₹2,430']]],
+ ['Reallocate · next 2 weeks',[
+ ['Triple Sponsored Display budget','Critical','Best type in the account: <strong>ROAS 5.03, conversion 20.13%</strong> — double the account average — on only ₹3,141, or 2.0% of spend. SD|PT|FingerPaints|EV alone runs 5.04x. Move ₹6,000 of paused budget here first.','+₹30,000 sales at current efficiency'],
+ ['Scale SPM | Finger Paint Defensive KWs |--Evits','Critical','ROAS 5.81 lifetime and <strong>improving</strong> — 5.36x early, 5.89x late, with a marginal ROAS of 5.89 on its W28 increase. It is the rare campaign that got better as it scaled. Currently only ₹2,290 total.','Highest-confidence scaling target'],
+ ['Fund SPT|B0CTHWVRJY|Market Basket Analysis|EV','High','ROAS 4.21 with the account\'s best CTR at 2.45% and 11.53% conversion, and it <i>improved</i> late (4.04x → 4.53x). It only gets ₹925/week. This targets your hero ASIN\'s basket — strategically the right place to be.','Directly supports B0CTHWVRJY'],
+ ['Scale SBV|Starter Painting Fun Pack|EV carefully','Medium','Lifetime ROAS is only 2.65, but it transformed: 1.63x in W21–24 to <strong>6.10x in W25–28</strong>, with a 7.79 marginal ROAS in W28. Something was fixed. Verify what changed, then scale.','Video is now working']]],
+ ['Structural · 30 days',[
+ ['Delete or archive the 22 dormant campaigns','High','36% of the account has spent ₹0 for eight weeks and 18 have zero impressions. Several duplicate active campaigns by name, which risks accidental internal bid competition if reactivated.','Removes structural risk'],
+ ['Fix the attribution discrepancy','Critical','ASIN-level sales exceed total campaign sales by 5–35% in the overlapping weeks. Until this is resolved, no ROAS figure in either file can be quoted with confidence. Confirm attribution windows and whether the ASIN report includes halo sales.','Makes all reporting trustworthy'],
+ ['Move from ACOS targets to marginal ROAS','Critical','Portfolio ACOS looked acceptable at 26.8% blended while marginal ROAS was −0.61. Blended metrics hid a losing spend increase for two full weeks.','Prevents recurrence'],
+ ['Rebalance toward Product Targeting','Medium','SP Product Targeting delivers 1.22% CTR vs SP Keyword\'s 0.55% at comparable ROAS (3.59 vs 3.73) and lower CPC (₹14.11 vs ₹15.25). It is the more efficient path to the same return.','Lower CPC at equal ROAS'],
+ ['Pull the Search Term Report for W25–W28','Critical','Still the single most valuable missing dataset. The broad-match campaigns burning money are identified — but not <i>which queries</i> inside them. This is where the remaining waste is hiding.','Closes the last major gap']]]];
+document.getElementById('acts').innerHTML=A.map(([t,items])=>
+ `<h3 style="font-size:16px;margin-top:26px">${t}</h3>`+items.map(([n,p,d,e])=>{
+  const cl={Critical:'p-cr',High:'p-hi',Medium:'p-md'}[p];
+  return `<details><summary>${n}<span class="pill ${cl}" style="margin-left:auto">${p}</span></summary>
+  <div class="dbody">${d}<div style="margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--pos)">EXPECTED EFFECT → ${e}</div></div></details>`}).join('')).join('');
+
+document.getElementById('gb').innerHTML=[
+ ['Campaign names, spend, sales, ROAS, ACOS by week','ok','Now present · 61 campaigns × 8 weeks'],
+ ['Campaign type performance','ok','Inferred from naming prefixes'],
+ ['Keywords and search terms','no','Search Term Report'],
+ ['Placement split (Top of Search / Rest / Product Pages)','no','Placement Report'],
+ ['Budget utilisation and budget-lost sales','no','Campaign Budget report'],
+ ['Lost impression share / search term impression share','no','Search Term Impression Share report'],
+ ['Daily ad data','no','Daily campaign export'],
+ ['Explicit campaign type column','no','Inferred here from prefixes — confirm mapping'],
+ ['Ad group and targeting-level detail','no','Ad Group / Targeting report'],
+ ['ASIN attribution per campaign','no','Advertised Product report']].map(g=>
+ `<tr><td>${g[0]}</td><td style="text-align:right">${g[1]==='ok'?'<span class="pill p-ok">Available</span>':'<span class="pill p-cr">Data Not Available</span>'}</td>
+ <td style="text-align:right;color:var(--mut);font-size:12px">${g[2]}</td></tr>`).join('');
+
+document.querySelectorAll('table').forEach(t=>{
+ t.querySelectorAll('th[data-k]').forEach(th=>{th.onclick=()=>{
+  const tb=t.querySelector('tbody'),rows=[...tb.rows],dir=th.dataset.d==='1'?-1:1;
+  t.querySelectorAll('th').forEach(h=>h.dataset.d='');th.dataset.d=dir===1?'1':'';
+  const idx=[...th.parentNode.children].indexOf(th);
+  rows.sort((a,b)=>{const A=(a.cells[idx]||{}).innerText||'',B=(b.cells[idx]||{}).innerText||'';
+   const na=parseFloat(A.replace(/[₹,%x+]/g,'')),nb=parseFloat(B.replace(/[₹,%x+]/g,''));
+   return (isNaN(na)||isNaN(nb))?A.localeCompare(B)*dir:(na-nb)*dir;});
+  rows.forEach(r=>tb.appendChild(r));};});});
+</script></body></html>
